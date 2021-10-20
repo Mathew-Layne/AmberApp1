@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ url('css/app.css') }}">
-    <link href="https://fonts.googleapis.com/css?family=Mitr|Roboto+Slab|Source+Sans+Pro&display=swap" rel="stylesheet">        
+    <link href="https://fonts.googleapis.com/css?family=Mitr|Roboto+Slab|Source+Sans+Pro&display=swap" rel="stylesheet"> 
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <title>Amber App</title>
 </head>
 <body>
@@ -36,20 +37,56 @@
                         <a href="{{ url('/register') }}" class="text-sm uppercase mx-3 text-white cursor-pointer hover:text-indigo-600">About us</a>
                         <a href="{{ url('/register') }}" class="text-sm uppercase mx-3 text-white cursor-pointer hover:text-indigo-600">Contact us</a>
                         <a href="{{ url('/register') }}" class="text-sm uppercase mx-3 text-white cursor-pointer hover:text-indigo-600">Calendar</a>
-                        <a href="{{ url('/dashboard') }}" class="text-sm uppercase mx-3 text-white cursor-pointer hover:text-indigo-600">Profile</a>
                     </div>
+                    @if(Auth::check())
+
+                    <div class="flex items-center space-x-4">
+                    
+                    
+                        <div x-data="{ dropdownOpen: false }" class="relative">
+                            <button @click="dropdownOpen = ! dropdownOpen" class="flex items-center space-x-2 relative focus:outline-none">
+                                <h2 class="text-white font-bold dark:text-gray-300 text-sm hidden sm:block">{{ Auth::user()->name }}
+                                </h2>
+                                <img class="h-9 w-9 rounded-full border-2 border-purple-500 object-cover"
+                                    src="https://images.unsplash.com/photo-1553267751-1c148a7280a1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                                    alt="Your avatar">
+                            </button>
+                    
+                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10" x-show="dropdownOpen"
+                                x-transition:enter="transition ease-out duration-100 transform"
+                                x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75 transform"
+                                x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+                                @click.away="dropdownOpen = false">
+                                <a href="{{ url('/dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-600 hover:text-white">Profile</a>
+                                <form action="{{ url('logout') }}" method="Post">
+                                    @csrf
+                                    <button type="submit"
+                                        class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-600 hover:text-white">Logout</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    @else
 
                     <div>
                         <a href="{{ url('/register') }}" class="text-sm uppercase mx-3 text-white cursor-pointer hover:text-indigo-600">Register</a>
                         <a href="{{ url('/login') }}" class="text-sm uppercase mx-3 text-white cursor-pointer hover:text-indigo-600">Login</a>
                     </div>
+
+                    @endif
                 </div>
+
     
                 <div x-show="open === true"
                     class="md:hidden flex flex-col w-full z-40 bg-indigo-600 rounded mt-4 py-2 overflow-hidden">
                     <a class="font-mitr text-sm uppercase text-gray-200 py-2 px-2 hover:bg-indigo-500">About us</a>
                     <a class="font-mitr text-sm uppercase text-gray-200 py-2 px-2 hover:bg-indigo-500">Contact us</a>
                     <a class="font-mitr text-sm uppercase text-gray-200 py-2 px-2 hover:bg-indigo-500">Calendar</a>
+                    <a href="{{ url('/register') }}"
+                        class="text-sm uppercase mx-3 text-white cursor-pointer hover:text-indigo-600">Register</a>
+                    <a href="{{ url('/login') }}" class="text-sm uppercase mx-3 text-white cursor-pointer hover:text-indigo-600">Login</a>
                 </div>
             </nav>
         </header>

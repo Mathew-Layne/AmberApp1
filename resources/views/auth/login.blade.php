@@ -12,6 +12,10 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
+        <div class="flex justify-center mb-4">
+            <h1 class="text-3xl font-bold">login</h1>
+        </div>
+
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -40,17 +44,26 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div>
+                <x-button>
+                    {{ __('Log in') }}
+                </x-button>
+            </div>
+
+            <div class="mt-2 flex justify-center">
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
-                @endif
-
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
+                @endif             
+                
             </div>
+
+            <div class="mt-1 flex justify-center text-sm ">
+                <a href="{{ url('/register') }}">Dont have an account?</a>
+            </div>
+
+            
         </form>
     </x-auth-card>
 </x-guest-layout>

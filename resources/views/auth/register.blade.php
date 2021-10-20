@@ -9,6 +9,10 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
+        <div class="flex justify-center mb-4">
+            <h1 class="text-3xl font-bold">Register</h1>
+        </div>
+
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
@@ -45,14 +49,15 @@
                                 name="password_confirmation" required />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+                <div class="my-3">
+                    <x-button>
+                        {{ __('Register') }}
+                    </x-button>
+                </div>
+            <div class="flex items-center justify-center mt-2">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
+                </a>                
             </div>
         </form>
     </x-auth-card>

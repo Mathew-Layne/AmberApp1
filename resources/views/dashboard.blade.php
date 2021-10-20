@@ -280,15 +280,21 @@
                                             <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                                                 <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
                                                 
+                                                <a href="{{ url('dashboard/student/view/'. $student->id) }}"><button
+                                                        class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-1 px-2 rounded-md">View</button></a>
                                                 <a href="{{ url('dashboard/student/edit/'. $student->id) }}"><button
                                                     class="bg-indigo-900 hover:bg-indigo-800 text-white font-bold py-1 px-2 rounded-md">Edit</button></a>
                                                 <a href="{{ url('dashboard/student/delete/'. $student->id) }}"><button
-                                                    class="bg-pink-400 hover:bg-pink-500 text-white font-bold py-1 px-2 rounded-md">Delete</button>
+                                                    class="bg-pink-400 hover:bg-pink-500 text-white font-bold py-1 px-2 rounded-md">Delete</button></a>
+                                                
                                             </td>
                                         </tr>
                                        @endforeach
                                     </tbody>
                                 </table>
+                                <div class="mt-2">
+                                    {{ $students->links() }}    
+                                </div>
 
                                 <div class="mt-3">
                                     <a href="{{ url('dashboard/addstudent') }}"><button
@@ -297,6 +303,7 @@
                                         Add Student
                                     </button></a>
                                 </div>
+
 
                                 @elseif(session()->get('admin') == 'editstudent')
                                 
@@ -540,6 +547,8 @@
                                         Add Subject
                                     </button></a>
                                 </div>
+
+                                {{ $subjects->links() }}
 
                                 @elseif(session()->get('admin') == 'editsubject')
                                 
