@@ -47,4 +47,36 @@ class StudentController extends Controller
         $students = Student::all();
         return view('dashboard', compact('students'));
     }
+
+    public function editview($id)
+    {
+        session()->put('admin', 'editstudent');
+
+        $data = Student::where('id', $id)->get();
+        return view('dashboard', compact('data'));
+    }
+
+    public function editStudent(Request $request, $id)
+    {
+
+        Student::where('id', $id)->update([
+
+            'first_name' => $request->fname,
+            'last_name' => $request->lname,
+            'email' => $request->email,
+            'dob' => $request->dob,
+            'gender' => $request->gender,
+            'phoneno' => $request->phoneno,
+            'class' => $request->class,
+        ]);
+        
+        return redirect('dashboard/studentlist');
+    }
+
+    public function deleteStudent($id)
+    {
+
+        Student::where('id', $id)->delete();
+        return redirect('dashboard/studentlist');
+    }
 }

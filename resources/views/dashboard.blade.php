@@ -219,7 +219,7 @@
 
                                                         <div class="ml-3 mt-3">
                                                             <button
-                                                                class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-6 py-3 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                                                class="bg-gray-600 text-white active:bg-pink-600 font-bold uppercase text-xs px-6 py-3 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                                                 type="submit">
                                                                 Add Student
                                                             </button>
@@ -297,6 +297,142 @@
                                         Add Student
                                     </button></a>
                                 </div>
+
+                                @elseif(session()->get('admin') == 'editstudent')
+                                
+                                <section class=" py-1 bg-blueGray-50">
+                                    <div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
+                                        <div
+                                            class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+                                            <div class="rounded-t bg-white mb-0 px-6 py-6">
+                                                <div class="text-center flex justify-between">
+                                                    <h6 class="text-blueGray-700 text-xl font-bold">
+                                                        Edit Student
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                                
+                                
+                                                <form method="Post">
+                                                    @csrf
+                                                    <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                                                        Personal Information
+                                                    </h6>
+                                                    <div class="flex flex-wrap">
+                                                        <div class="w-full lg:w-6/12 px-4">
+                                                            <div class="relative w-full mb-3">
+                                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                                                    htmlfor="grid-password">
+                                                                    First Name
+                                                                </label>
+                                                                <input type="text"
+                                                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                                    name="fname" value="{{ $data[0]->first_name }}">
+                                                                @error('fname')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="w-full lg:w-6/12 px-4">
+                                                            <div class="relative w-full mb-3">
+                                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                                                    htmlfor="grid-password">
+                                                                    Last Name
+                                                                </label>
+                                                                <input type="text"
+                                                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                                    name="lname" value="{{ $data[0]->last_name }}">
+                                                                @error('lname')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="w-full lg:w-6/12 px-4">
+                                                            <div class="relative w-full mb-3">
+                                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                                                    htmlfor="grid-password">
+                                                                    Gender
+                                                                </label>
+                                                                <input type="text"
+                                                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                                    name="gender" value="{{ $data[0]->gender }}">
+                                                                @error('gender')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="w-full lg:w-6/12 px-4">
+                                                            <div class="relative w-full mb-3">
+                                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                                                    htmlfor="grid-password">
+                                                                    Date of Birth
+                                                                </label>
+                                                                <input type="date"
+                                                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                                    value="{{ $data[0]->dob }}"
+                                                                    name="dob">
+                                                                    
+                                                                @error('dob')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                
+                                                    <hr class="mt-6 border-b-1 border-blueGray-300">
+                                
+                                                    <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                                                        Contact Information
+                                                    </h6>
+                                                    <div class="flex flex-wrap">
+                                                        <div class="w-full lg:w-12/12 px-4">
+                                                            <div class="relative w-full mb-3">
+                                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                                                    htmlfor="grid-password">
+                                                                    Email Address
+                                                                </label>
+                                                                <input type="email"
+                                                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                                    name="email" value="{{ $data[0]->email }}">
+                                                                @error('email')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                
+                                                        <div class="w-full lg:w-6/12 px-4">
+                                                            <div class="relative w-full mb-3">
+                                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                                                    htmlfor="grid-password">
+                                                                    Phone Number
+                                                                </label>
+                                                                <input type="text"
+                                                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                                    name="phoneno" value="{{ $data[0]->phoneno }}">
+                                                                @error('phoneno')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="w-full lg:w-6/12 px-4">
+                                                            <div class="relative w-full mb-3">
+                                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                                                    htmlfor="grid-password">
+                                                                    Class
+                                                                </label>
+                                                                <input type="text"
+                                                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                                    name="class" value="{{ $data[0]->class }}">
+                                                                @error('class')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                
+                                                        <div class="ml-3 mt-3">
+                                                            <button
+                                                                class="bg-gray-600 text-white active:bg-pink-600 font-bold uppercase text-xs px-6 py-3 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                                                type="submit">
+                                                                Update
+                                                            </button>
+                                                        </div>
+                                
+                                                    </div>
+                                
+                                
+                                
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
 
                                 @elseif(session()->get('admin') == 'addSubject')
                                 
@@ -386,10 +522,10 @@
                                                     class="inline-block w-1/3 md:hidden font-bold">Subject Cost</span>${{ $subject->cost }}</td>
                                             <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                                                 <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
-                                                <button
-                                                    class="bg-indigo-900 hover:bg-indigo-800 text-white font-bold py-1 px-2 rounded-md">Edit</button>
-                                                <button
-                                                    class="bg-pink-400 hover:bg-pink-500 text-white font-bold py-1 px-2 rounded-md"">Delete</button>
+                                                <a href="{{ url('dashboard/subject/edit/'. $subject->id) }}"><button
+                                                    class="bg-indigo-900 hover:bg-indigo-800 text-white font-bold py-1 px-2 rounded-md">Edit</button></a>
+                                                <a href="{{ url('dashboard/subject/delete/'. $subject->id) }}"><button
+                                                    class="bg-pink-400 hover:bg-pink-500 text-white font-bold py-1 px-2 rounded-md"">Delete</button></a>
                                             </td>
                                         </tr> 
                                         @endforeach                                       
@@ -404,6 +540,72 @@
                                         Add Subject
                                     </button></a>
                                 </div>
+
+                                @elseif(session()->get('admin') == 'editsubject')
+                                
+                                <section class=" py-1 bg-blueGray-50">
+                                    <div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
+                                        <div
+                                            class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+                                            <div class="rounded-t bg-white mb-0 px-6 py-6">
+                                                <div class="text-center flex justify-between">
+                                                    <h6 class="text-blueGray-700 text-xl font-bold">
+                                                        Edit Subject
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                                
+                                
+                                                <form method="Post">
+                                                    @csrf
+                                                    <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                                                        Subject Details
+                                                    </h6>
+                                                    <div class="flex flex-wrap">
+                                                        <div class="w-full lg:w-12/12 px-4">
+                                                            <div class="relative w-full mb-3">
+                                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                                                    htmlfor="grid-password">
+                                                                    Subject Name
+                                                                </label>
+                                                                <input type="text"
+                                                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                                    name="subject" value="{{ $data[0]->subject_name }}">
+                                                                @error('subject')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                
+                                                        <div class="w-full lg:w-12/12 px-4">
+                                                            <div class="relative w-full mb-3">
+                                                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                                                    htmlfor="grid-password">
+                                                                    Cost
+                                                                </label>
+                                                                <input type="number"
+                                                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                                    name="cost" value="{{ $data[0]->cost }}">
+                                                                @error('cost')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                
+                                                        <div class="ml-3 mt-3">
+                                                            <button
+                                                                class="bg-gray-600 text-white active:bg-pink-600 font-bold uppercase text-xs px-6 py-3 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                                                type="submit">
+                                                                Update
+                                                            </button>
+                                                        </div>
+                                
+                                                    </div>
+                                
+                                
+                                
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
 
                                 @endif
 

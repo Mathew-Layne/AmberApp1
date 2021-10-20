@@ -36,7 +36,8 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::get('dashboard/studentlist', [StudentController::class, 'studentList']);
 
-    Route::get('dashboard/student/edit/{id}', [StudentController::class, 'editStudent']);
+    Route::get('dashboard/student/edit/{id}', [StudentController::class, 'editview']);
+    Route::post('dashboard/student/edit/{id}', [StudentController::class, 'editStudent']);
     Route::get('dashboard/student/delete/{id}', [StudentController::class, 'deleteStudent']);
 
 
@@ -45,7 +46,8 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::get('dashboard/subjectlist', [SubjectController::class, 'subjectList']);
 
-    Route::get('dashboard/subject/edit/{id}', [SubjectController::class, 'editSubject']);
+    Route::get('dashboard/subject/edit/{id}', [SubjectController::class, 'editview']);
+    Route::post('dashboard/subject/edit/{id}', [SubjectController::class, 'editSubject']);
     Route::get('dashboard/subject/delete/{id}', [SubjectController::class, 'deleteSubject']);
     
 });

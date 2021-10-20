@@ -36,4 +36,27 @@ class SubjectController extends Controller
         $subjects = Subject::all();
         return view('dashboard', compact('subjects'));
     }
+
+    public function editview($id){
+        session()->put('admin', 'editsubject');
+
+        $data = Subject::where('id', $id)->get();
+        return view('dashboard', compact('data'));
+    }
+
+    public function editSubject(Request $request, $id){
+
+        Subject::where('id', $id)->update([
+            'subject_name' => $request->subject,
+            'cost' => $request->cost,
+        ]);
+
+        return redirect('dashboard/subjectlist');
+    }
+
+    public function deleteSubject($id){
+
+        Subject::where('id', $id)->delete();
+        return redirect('dashboard/subjectlist');
+    }
 }
