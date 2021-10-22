@@ -44,7 +44,7 @@ class StudentController extends Controller
 
         session()->put('admin', 'studentList');
 
-        $students = Student::paginate(2);
+        $students = Student::paginate(5);
         return view('dashboard', compact('students'));
     }
 

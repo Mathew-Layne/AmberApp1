@@ -732,7 +732,7 @@
                                                     Now</button></a>
                                             @else
                                             <button
-                                                class="bg-indigo-900 hover:bg-indigo-800 text-white font-bold py-1 px-2 rounded-md">Denied</button>
+                                                class="bg-indigo-900 hover:bg-indigo-800 text-white font-bold py-1 px-2 rounded-md">Pending</button>
                                             @endif
                                             <a href="{{ url('dashboard/subject/delete/'. $studentInfo->id) }}"><button
                                                     class="bg-pink-400 hover:bg-pink-500 text-white font-bold py-1 px-2 rounded-md"">Delete</button></a>

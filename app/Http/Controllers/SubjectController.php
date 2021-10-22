@@ -33,7 +33,7 @@ class SubjectController extends Controller
 
         session()->put('admin', 'subjectList');
 
-        $subjects = Subject::paginate(2);
+        $subjects = Subject::paginate(5);
         return view('dashboard', compact('subjects'));
     }
 
