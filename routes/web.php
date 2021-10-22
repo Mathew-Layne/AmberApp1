@@ -26,9 +26,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-Route::group(['middleware'=>'auth'], function(){
+Route::group(['middleware' => 'auth'], function () {
 
     Route::get('dashboard', [AdminController::class, 'index']);
 
@@ -37,7 +37,7 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::get('dashboard/studentlist', [StudentController::class, 'studentList']);
 
-    
+
     Route::get('dashboard/student/edit/{id}', [StudentController::class, 'editview']);
     Route::post('dashboard/student/edit/{id}', [StudentController::class, 'editStudent']);
     Route::get('dashboard/student/delete/{id}', [StudentController::class, 'deleteStudent']);
@@ -53,5 +53,12 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('dashboard/subject/delete/{id}', [SubjectController::class, 'deleteSubject']);
 
     Route::get('dashboard/student/view/{id}', [SubjectChoiceController::class, 'studentProfile']);
-    Route::get('dashboard/student/view/{id}', [SubjectChoiceController::class, 'setProfile']);   
+
+    Route::get('dashboard/subject/selection/{id}', [SubjectChoiceController::class, 'chooseSubject']);
+    Route::post('dashboard/subject/selection/{id}', [SubjectChoiceController::class, 'subjectAdded']);
+
+    Route::get('dashboard/subject/choice', [SubjectChoiceController::class, 'subjectChoice']);
+
+    Route::get('subject/choice/approve/{id}', [SubjectChoiceController::class, 'approveChoice']);
+    Route::get('subject/choice/deny/{id}', [SubjectChoiceController::class, 'denyChoice']);
 });
