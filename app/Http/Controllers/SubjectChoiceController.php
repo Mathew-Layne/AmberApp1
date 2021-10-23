@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\SubjectChoice;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class SubjectChoiceController extends Controller
 {
     public function studentProfile($id)
     {
-        session()->put('admin', 'studentprofile');        
+        session()->put('admin', 'studentprofile');
+        // Student::whereRelation('subjectchoice', 'student_id', $id)->get();
+        $balance = Subject::sum('cost');
+
+        dd($balance);
         $data = SubjectChoice::where('student_id', $id)->paginate(5);
         return view('dashboard', compact( 'data'));
     }

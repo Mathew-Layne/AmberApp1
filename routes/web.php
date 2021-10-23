@@ -1,10 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HelperController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\SubjectChoiceController;
-use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,13 +27,18 @@ Route::get('/dashboard', function () {
 require __DIR__ . '/auth.php';
 require __DIR__ . '/helper.php';
 
+Route::get('/helper', [HelperController::class, 'helper']);
+
+
 
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('dashboard', [AdminController::class, 'index']);
 
-    require __DIR__ . '/student.php';
-    require __DIR__ . '/subject.php';
-    require __DIR__ . '/subjectchoice.php';
+    require __DIR__ . '/studentroute.php';
+    require __DIR__ . '/subjectroute.php';
+    require __DIR__ . '/subjectchoiceroute.php';
 
 });
+
+
